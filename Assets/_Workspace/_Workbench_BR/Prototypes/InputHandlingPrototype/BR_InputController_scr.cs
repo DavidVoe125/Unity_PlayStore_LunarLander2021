@@ -10,16 +10,15 @@ public class BR_InputController_scr : MonoBehaviour
     public Text VerticalInput;
     public Text HorizontalInput;
 
-    private Vector2 _input = new Vector2();
+    public static Vector2 Input = new Vector2();
 
 
     void Update()
     {
-        
-        _input.y = -Input.acceleration.z;
-        _input.x = Input.acceleration.x;
+        Input.y = -UnityEngine.Input.acceleration.z;
+        Input.x = UnityEngine.Input.acceleration.x;
 
-        VerticalInput.text = $"V: {_input.y:#0.00}";
-        HorizontalInput.text = $"H: {_input.x:#0.00}";
+        VerticalInput.text = $"V: {Input.y:#0.00}";
+        HorizontalInput.text = $"H: {Input.x:#0.00}";
     }
 }
