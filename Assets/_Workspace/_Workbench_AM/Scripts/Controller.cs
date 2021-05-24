@@ -22,52 +22,52 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessThrust();
-        ProcessRotation();
+        ApplyRotation();
+        StartThrusting();
     }
 
-    void ProcessThrust()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            StartThrusting();
-        }
-    }
+   // // void ProcessThrust()
+   ////{
+   //     if (Input.GetKey(KeyCode.Space))
+   //     {
+   //         StartThrusting();
+   //     }
+   // }
 
     void StartThrusting()
     {
-        rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+        rb.AddRelativeForce(Vector3.up * mainThrust * BR_InputController_scr.Input.y * Time.deltaTime);
 
     }
 
     // dont think here inverted
-    void ProcessRotation()
-    {
-        if (Input.GetKey(KeyCode.A))
-        {
-            LeftRotation();
-        }
+    //void ProcessRotation()
+    //{
+    //    if (Input.GetKey(KeyCode.A))
+    //    {
+    //        LeftRotation();
+    //    }
 
-        else if (Input.GetKey(KeyCode.D))
-        {
-            RightRotation();
-        }
-    }
+    //    else if (Input.GetKey(KeyCode.D))
+    //    {
+    //        RightRotation();
+    //    }
+    //}
 
-    void RightRotation()
-    {
-        ApplyRotation(-rotationThrust);
-    }
+    //void RightRotation()
+    //{
+    //    ApplyRotation(-rotationThrust);
+    //}
 
-    void LeftRotation()
-    {
-        ApplyRotation(rotationThrust);
-    }
+    //void LeftRotation()
+    //{
+    //    ApplyRotation(rotationThrust);
+    //}
 
-    void ApplyRotation(float rotationThisFrame)
+    void ApplyRotation()
     {
         rb.freezeRotation = true; //freezing rotation so we can manually rotate 
-        transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
+        transform.Rotate(Vector3.forward  * BR_InputController_scr.Input.x * Time.deltaTime);
         rb.freezeRotation = false; //unfreezing rotation so the pyhsic can take over
     }
 }
