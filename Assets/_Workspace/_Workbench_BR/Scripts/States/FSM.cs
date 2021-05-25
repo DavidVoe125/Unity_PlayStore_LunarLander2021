@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LunarLander.Prototypes.BR.LevelLoaderProtyp
+namespace LunarLander.Game.States
 {
     public class FSM
     {
@@ -36,6 +36,4 @@ namespace LunarLander.Prototypes.BR.LevelLoaderProtyp
             CurrentState = nextState;
         }
     }
-
-
 }

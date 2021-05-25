@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace LunarLander.Prototypes.BR.LevelLoaderProtyp
+namespace LunarLander.Game.States
 {
-    public class GameManager : MonoBehaviour
+    public class GameController : MonoBehaviour
     {
         // +++ Fields +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // public
@@ -38,9 +37,9 @@ namespace LunarLander.Prototypes.BR.LevelLoaderProtyp
             var fsm = new FSM();
 
             fsm
-                .AddState(GameStates.Intro, new SceneState_Intro(fsm))
-                .AddState(GameStates.MainMenu, new SceneState_MainMenu(fsm))
-                .AddState(GameStates.Credits, new SceneState_Credits(fsm));
+                .AddState(GameStates.Intro, new GameState_Intro(fsm))
+                .AddState(GameStates.MainMenu, new GameState_MainMenu(fsm))
+                .AddState(GameStates.Credits, new GameState_Credits(fsm));
 
             // todo: Add Game Over State
             // todo: Add Pre Level State
@@ -59,4 +58,3 @@ namespace LunarLander.Prototypes.BR.LevelLoaderProtyp
         }
     }
 }
-

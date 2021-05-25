@@ -1,4 +1,4 @@
-namespace LunarLander.Prototypes.BR.LevelLoaderProtyp
+namespace LunarLander.Game.States
 {
     public interface IState
     {

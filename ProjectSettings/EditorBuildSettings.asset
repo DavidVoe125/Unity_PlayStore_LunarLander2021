@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Workspace/_Workbench_BR/Scenes/LunarLander_GameController_Scene.unity
+    guid: ae074c7b08e92f643ae53b9acd003c39
+  - enabled: 1
+    path: Assets/_Workspace/_Workbench_BR/Scenes/LunarLander_Credits_Scene.unity
+    guid: af5b37f47f340294485f2f2e2cf9cdd6
+  - enabled: 1
+    path: Assets/_Workspace/_Workbench_BR/Scenes/LunarLander_Intro_Scene.unity
+    guid: 77a15e4e5d304b643a26a4e6eb7ae3f7
+  - enabled: 1
+    path: Assets/_Workspace/_Workbench_BR/Scenes/LunarLander_MainMenu_Scene.unity
+    guid: 66837ac93fec14043acf4a3d015639a3
   m_configObjects: {}
