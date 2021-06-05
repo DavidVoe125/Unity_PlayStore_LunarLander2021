@@ -20,15 +20,7 @@ namespace LunarLander.Game.States
 
         public void OnUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                fsm.SwitchStates(GameStates.Credits);
-            }
-
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                fsm.SwitchStates(GameStates.Intro);
-            }
+            
         }
 
         public void OnExit()

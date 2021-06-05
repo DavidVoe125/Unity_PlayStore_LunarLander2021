@@ -20,10 +20,6 @@ namespace LunarLander.Game.States
 
         public void OnUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                fsm.SwitchStates(GameStates.MainMenu);
-            }
         }
 
         public void OnExit()
