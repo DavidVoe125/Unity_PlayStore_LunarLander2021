@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using LunarLander.Prototypes.InputHandler;
 using UnityEngine;
 
 public class Controller : MonoBehaviour

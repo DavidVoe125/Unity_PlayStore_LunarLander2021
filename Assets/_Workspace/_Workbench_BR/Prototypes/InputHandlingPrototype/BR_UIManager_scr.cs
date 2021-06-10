@@ -1,21 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using LunarLander.Prototypes.InputHandler;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BR_UIManager_scr : MonoBehaviour
+namespace LunarLander.Prototypes.InputHandler
 {
-    public Text HorizontalDisplay;
-    public Text VerticalDisplay;
-
-   
-
-    
-    void Update()
+    public class BR_UIManager_scr : MonoBehaviour
     {
+        public Text HorizontalDisplay;
+        public Text VerticalDisplay;
 
-        HorizontalDisplay.text = $"V: {BR_InputController_scr.Input.x:#0.00}";
-        VerticalDisplay.text = $"V: {BR_InputController_scr.Input.y:#0.00}";
-
+        void Update()
+        {
+            HorizontalDisplay.text = $"H: {BR_InputController_scr.Input.x:#0.00}";
+            VerticalDisplay.text = $"V: {BR_InputController_scr.Input.y:#0.00}";
+        }
     }
 }

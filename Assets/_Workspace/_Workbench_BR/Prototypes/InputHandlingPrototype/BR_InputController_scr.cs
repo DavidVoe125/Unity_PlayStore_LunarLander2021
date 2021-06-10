@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BR_InputController_scr : MonoBehaviour
+namespace LunarLander.Prototypes.InputHandler
 {
-    // +++ fields +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    
-    public Text VerticalInput;
-    public Text HorizontalInput;
-
-    public static Vector2 Input = new Vector2();
-
-
-    void Update()
+    public class BR_InputController_scr : MonoBehaviour
     {
-        Input.y = -UnityEngine.Input.acceleration.z;
-        Input.x = UnityEngine.Input.acceleration.x;
+        // +++ fields +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        VerticalInput.text = $"V: {Input.y:#0.00}";
-        HorizontalInput.text = $"H: {Input.x:#0.00}";
+        public Text VerticalInput;
+        public Text HorizontalInput;
+
+        public static Vector2 Input = new Vector2();
+
+
+        void Update()
+        {
+            Input.y = (Mathf.Clamp(-UnityEngine.Input.acceleration.z, 0.30f, 0.95f) - 0.30f) / (0.95f - 0.30f);
+            Input.x = Mathf.Clamp(UnityEngine.Input.acceleration.x, -0.45f, 0.45f) / 0.45f;
+        }
     }
 }
+
