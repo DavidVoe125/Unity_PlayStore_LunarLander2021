@@ -1,10 +1,13 @@
 using Nvp.Events;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController_Credits : MonoBehaviour
 {
-    public void GotoMainMenu()
+    public void GotoNextScene(string sceneName)
     {
-        EventManager.Invoke(GameEvents.OnUiButtonClicked_GotoMainMenu, this, null);
+        Debug.Log(sceneName);
+        SceneController_Loading.SetNextScene(sceneName);
+        SceneManager.LoadSceneAsync(1);
     }
 }

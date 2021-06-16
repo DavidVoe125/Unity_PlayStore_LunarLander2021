@@ -1,6 +1,5 @@
 namespace Nvp.Events
-{
-    public enum GameEvents
+{    public enum GameEvents
     {
         // scene management Events
 
@@ -20,5 +19,8 @@ namespace Nvp.Events
         OnUiButtonClicked_GotoMainMenu,
         OnUiButtonClicked_GotoCredits,
         OnUiButtonClicked_GotoIntro,
-    }
+
+        // for testing
+        OnMouseRightClick,
+  }
 }
