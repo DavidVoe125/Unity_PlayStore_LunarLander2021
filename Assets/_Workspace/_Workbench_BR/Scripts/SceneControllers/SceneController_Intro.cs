@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ludiq;
 using Nvp.Events;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController_Intro : MonoBehaviour
+namespace LunarLander.Scenes.SceneControllers
 {
-
-
-    public void GotoMainMenu()
+    public class SceneController_Intro : MonoBehaviour
     {
-        EventManager.Invoke(GameEvents.OnUiButtonClicked_GotoMainMenu, null, null);
-    }
-
-    public void GotoNextScene(string sceneName)
-    {
-        Debug.Log(sceneName);
-        SceneController_Loading.SetNextScene(sceneName);
-        SceneManager.LoadSceneAsync(1);
+        public void GotoNextScene(string sceneName)
+        {
+            Debug.Log(sceneName);
+            SceneController_Loading.SetNextScene(sceneName);
+            SceneManager.LoadSceneAsync(1);
+        }
     }
 }
+

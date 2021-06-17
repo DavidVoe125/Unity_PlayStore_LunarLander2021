@@ -2,12 +2,16 @@ using Nvp.Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController_Credits : MonoBehaviour
+namespace LunarLander.Scenes.SceneControllers
 {
-    public void GotoNextScene(string sceneName)
+
+    public class SceneController_Credits : MonoBehaviour
     {
-        Debug.Log(sceneName);
-        SceneController_Loading.SetNextScene(sceneName);
-        SceneManager.LoadSceneAsync(1);
+        public void GotoNextScene(string sceneName)
+        {
+            Debug.Log(sceneName);
+            SceneController_Loading.SetNextScene(sceneName);
+            SceneManager.LoadSceneAsync(1);
+        }
     }
 }

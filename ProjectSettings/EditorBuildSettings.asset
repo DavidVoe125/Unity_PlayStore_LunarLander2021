@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Workspace/_Workbench_BR/Scenes/LunarLander_Credits.unity
     guid: af5b37f47f340294485f2f2e2cf9cdd6
+  - enabled: 1
+    path: Assets/_Workspace/_Workbench_BR/Scenes/LunarLander_PreGameSequence.unity
+    guid: f39a40e63c24af04ba8da571c7f0b149
+  - enabled: 1
+    path: Assets/_Workspace/_Workbench_BR/Scenes/LunarLander_HighScores.unity
+    guid: d8265b6bb21b08d4da1972878562526d
+  - enabled: 1
+    path: Assets/_Workspace/_Workbench_BR/Scenes/LunarLander_Game.unity
+    guid: 97667c2b38c045c4f90c7974d4d13b88
+  - enabled: 1
+    path: Assets/_Workspace/_Workbench_BR/Scenes/LunarLander_GameOver.unity
+    guid: 7a126e54e8525054286ffa822e6f9ebd
   m_configObjects: {}
