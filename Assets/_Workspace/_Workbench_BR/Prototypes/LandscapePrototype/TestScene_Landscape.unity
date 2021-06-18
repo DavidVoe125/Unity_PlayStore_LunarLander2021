@@ -388,9 +388,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b60b33d8364c245bd52eaa6eaf68f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torque: 60
-  force: 150
+  torque: 10
+  force: 200
   forceDir: {fileID: 617110271}
+  m_NextSceneName: LunarLander_GameOver
 --- !u!4 &207753371
 Transform:
   m_ObjectHideFlags: 0

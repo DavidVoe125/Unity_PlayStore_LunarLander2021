@@ -28,7 +28,9 @@ namespace LunarLander.Scenes.SceneControllers
 
         public static void SetNextScene(string nextSceneName)
         {
+            Debug.Log(nextSceneName);
             m_NextSceneName = nextSceneName;
+            SceneManager.LoadSceneAsync(1);
         }
 
         void Start()

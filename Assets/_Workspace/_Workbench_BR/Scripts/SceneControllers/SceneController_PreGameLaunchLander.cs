@@ -16,13 +16,25 @@ public class SceneController_PreGameLaunchLander : MonoBehaviour
         StartCoroutine(LoadLevel());
     }
 
+    void Update()
+    {
+        if (Input.touchCount > 0)
+        {
+            var touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                Debug.Log("touch");
+                SceneController_Loading.SetNextScene(m_NextSceneName);
+            }
+        }
+    }
+
     IEnumerator LoadLevel()
     {
         yield return new WaitForSeconds(m_LoadLevelAfterSecondsElapsed);
-
-        Debug.Log(m_NextSceneName);
+        
         SceneController_Loading.SetNextScene(m_NextSceneName);
-        SceneManager.LoadSceneAsync(1);
     }
 
 }

@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Workspace/_Workbench_BR/Prototypes/LanderLaunch/LunarLander_PreGameLaunchLander.unity
     guid: 77114be9c377c0d4a97f1056f119eaef
+  - enabled: 1
+    path: Assets/_Workspace/_Workbench_BR/Prototypes/LandscapePrototype/TestScene_Landscape.unity
+    guid: dff25448acc5c744fa539830b364dfdf
   m_configObjects: {}
