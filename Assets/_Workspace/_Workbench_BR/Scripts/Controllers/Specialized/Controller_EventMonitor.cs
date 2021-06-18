@@ -19,6 +19,6 @@ public class Controller_EventMonitor : MonoBehaviour
 
     private void OnEventInvokation(object sender, object eventargs)
     {
-        Debug.Log($"{((GameObject)sender).name} invokes {m_EventToMonitor}");
+        Debug.Log($"{((MonoBehaviour)sender).gameObject.name} invokes {m_EventToMonitor}");
     }
 }

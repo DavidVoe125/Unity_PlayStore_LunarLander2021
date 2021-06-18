@@ -11,14 +11,14 @@ public class Controller_CollisionsPlayer : MonoBehaviour
         {
             EventManager.Invoke(
                 "OnPlayerCollidedWithEnvironment", 
-                this.gameObject, 
+                this, 
                 this.transform.position);
         }
         else if (collision.collider.gameObject.CompareTag("LandingPad"))
         {
             EventManager.Invoke(
-                "OnPlayCollidedWithLandingPad", 
-                this.gameObject, 
+                "OnPlayerCollidedWithLandingPad", 
+                this, 
                 this.gameObject.GetComponent<Rigidbody>());
         }
     }

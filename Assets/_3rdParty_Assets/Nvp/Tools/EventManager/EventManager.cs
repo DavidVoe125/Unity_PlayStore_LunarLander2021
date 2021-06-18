@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 
 namespace Nvp.Events
 {
 
     public delegate void EventMessageDelegate(object sender, object eventArgs);
-
+    
     public static class EventManager
     {
         private static Dictionary<int, EventMessageDelegate> _eventHandlers;
@@ -24,9 +25,11 @@ namespace Nvp.Events
             if (_eventHandlers.TryGetValue((int)ge, out temp))
             {
                 temp += listener;
+                _eventHandlers[(int)ge] = temp;
             }
             else
             {
+                temp = delegate { };
                 temp += listener;
                 _eventHandlers.Add((int)ge, temp);
             }
@@ -39,9 +42,11 @@ namespace Nvp.Events
             if (_eventHandlers.TryGetValue(hash, out temp))
             {
                 temp += listener;
+                _eventHandlers[hash] = temp;
             }
             else
             {
+                temp = delegate { };
                 temp += listener;
                 _eventHandlers.Add(hash, temp);
             }
@@ -57,6 +62,7 @@ namespace Nvp.Events
             if (_eventHandlers.TryGetValue((int)ge, out temp))
             {
                 temp -= listener;
+                _eventHandlers[(int) ge] = temp;
             }
         }
 
@@ -68,6 +74,7 @@ namespace Nvp.Events
             if (_eventHandlers.TryGetValue(hash, out temp))
             {
                 temp -= listener;
+                _eventHandlers[hash] = temp;
             }
         }
 
@@ -94,6 +101,8 @@ namespace Nvp.Events
             EventMessageDelegate temp;
             if (_eventHandlers.TryGetValue(hash, out temp))
             {
+                var list = temp.GetInvocationList();
+
                 temp.Invoke(sender, eventArgs);
             }
             else
@@ -102,4 +111,6 @@ namespace Nvp.Events
             }
         }
     }
+
+    
 }
