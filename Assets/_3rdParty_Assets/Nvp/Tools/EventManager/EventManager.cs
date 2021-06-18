@@ -101,7 +101,5 @@ namespace Nvp.Events
                 UnityEngine.Debug.LogWarning($"No subscribers to invoked event [{gameEvent}]");
             }
         }
-
-        
     }
 }

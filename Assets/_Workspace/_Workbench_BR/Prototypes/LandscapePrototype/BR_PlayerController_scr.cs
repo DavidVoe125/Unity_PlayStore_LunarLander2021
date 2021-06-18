@@ -27,7 +27,7 @@ namespace LunarLander.Prototypes.BR.LandscapePrototype
 
                 if (touch.phase == TouchPhase.Began)
                 {
-                    Debug.Log("touch");
+                    //Debug.Log("touch");
                     SceneController_Loading.SetNextScene(m_NextSceneName);
                 }
             }
@@ -37,7 +37,7 @@ namespace LunarLander.Prototypes.BR.LandscapePrototype
         {
             torqueVector.z += BR_InputController_scr.INPUT.x * torque * Time.deltaTime;
             transform.rotation = Quaternion.Euler(torqueVector);
-            Debug.Log(BR_InputController_scr.INPUT.y);
+            //Debug.Log(BR_InputController_scr.INPUT.y);
 
             rb.AddForce(forceDir.forward * BR_InputController_scr.INPUT.y * force * Time.deltaTime, ForceMode.Force);
         }
