@@ -40,6 +40,6 @@ public class Controller_CameraDistance : MonoBehaviour
             m_MaxCameraSize - diff * (1f - (agl / 500))
             , m_MinCameraSize
             , m_MaxCameraSize);
-        Debug.Log($"sizeTarget: {sizeTarget}");
+        //Debug.Log($"sizeTarget: {sizeTarget}");
     }
 }
