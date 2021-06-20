@@ -22,6 +22,6 @@ public class Controller_AGLDisplay : MonoBehaviour
     {
         float agl = (float) eventargs;
         //Debug.Log($"AGL : {agl} m");
-        m_AboveGroundLevelText.text = $"AGL : {agl} m";
+        m_AboveGroundLevelText.text = $"AGL : {agl:000.0} m";
     }
 }

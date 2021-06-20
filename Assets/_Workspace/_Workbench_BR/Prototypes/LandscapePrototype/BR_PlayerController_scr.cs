@@ -13,8 +13,9 @@ namespace LunarLander.Prototypes.BR.LandscapePrototype
         [SerializeField] private string m_NextSceneName;
         [SerializeField] private LayerMask m_GroundLayerMask;
 
-        private Vector3 torqueVector ;
-        private Rigidbody rb;
+        private Vector3 m_torqueVector;
+        private Rigidbody m_rb;
+        private bool m_IsLanded;
 
 
 
@@ -22,9 +23,9 @@ namespace LunarLander.Prototypes.BR.LandscapePrototype
         // +++ unity event functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void Start()
         {
-            torqueVector = transform.rotation.eulerAngles;
-            rb = GetComponent<Rigidbody>();
-            rb.velocity = new Vector3(
+            m_torqueVector = transform.rotation.eulerAngles;
+            m_rb = GetComponent<Rigidbody>();
+            m_rb.velocity = new Vector3(
                 -10f
                 , 0f
                 , 0f);
@@ -50,12 +51,14 @@ namespace LunarLander.Prototypes.BR.LandscapePrototype
 
         private void FixedUpdate()
         {
-            torqueVector.z += BR_InputController_scr.INPUT.x * torque * Time.deltaTime;
+            if (m_IsLanded) return;
+
+            m_torqueVector.z += BR_InputController_scr.INPUT.x * torque * Time.deltaTime;
             transform.rotation = Quaternion.Euler(
-                torqueVector);
+                m_torqueVector);
             //Debug.Log(BR_InputController_scr.INPUT.y);
 
-            rb.AddForce(
+            m_rb.AddForce(
                 forceDir.forward 
                 * BR_InputController_scr.INPUT.y 
                 * force 
@@ -63,7 +66,24 @@ namespace LunarLander.Prototypes.BR.LandscapePrototype
                 , ForceMode.Force);
         }
 
+        private void OnEnable()
+        {
+            EventManager.AddEventListener("OnPlayerCollidedWithLandingPad", OnPlayerCollidedWithLandingPad);
+        }
 
+        private void OnDisable()
+        {
+            EventManager.RemoveEventListener("OnPlayerCollidedWithLandingPad", OnPlayerCollidedWithLandingPad);
+        }
+
+
+
+
+        // +++ Event handler ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        private void OnPlayerCollidedWithLandingPad(object sender, object eventargs)
+        {
+            m_IsLanded = true;
+        }
 
 
         // +++ class member +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -72,8 +92,15 @@ namespace LunarLander.Prototypes.BR.LandscapePrototype
             while (true)
             {
                 Helper_MeasureDistanceToGround();
+                Helper_ReportVelocity();
                 yield return new WaitForSeconds(0.3f);
             }
+        }
+
+        private void Helper_ReportVelocity()
+        {
+            EventManager.Invoke("OnReportVelocityVertical", this, m_rb.velocity.y);
+            EventManager.Invoke("OnReportVelocityHorizontal", this, -m_rb.velocity.x);
         }
 
         private void Helper_MeasureDistanceToGround()
