@@ -20,14 +20,17 @@ public class Controller_Player2D : MonoBehaviour
 
     [SerializeField] private LayerMask m_GroundLayerMask;
 
-    private Vector3 m_torqueVector;
+    
 
+    private Vector3 m_torqueVector;
+    private LineRenderer m_LineRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         m_Rb = GetComponent<Rigidbody2D>();
-        
+        m_LineRenderer = GetComponent<LineRenderer>();
+
         StartCoroutine(
             MeasureGroundDistanceCoroutine());
     }
@@ -37,7 +40,15 @@ public class Controller_Player2D : MonoBehaviour
     {
         m_Input.x = Input.GetAxis("Horizontal");
         m_Input.y = Input.GetAxis("Vertical");
-        m_torqueVector.z -= BR_InputController_scr.INPUT.x * m_Torque * Time.deltaTime;
+        m_torqueVector.z = Mathf.LerpAngle(this.m_torqueVector.z, -BR_InputController_scr.INPUT.x * m_Torque, Time.deltaTime);
+
+        var vel = new Vector3(
+                m_Rb.velocity.x,
+                m_Rb.velocity.y,
+                0);
+
+        m_LineRenderer.SetPosition(0, this.transform.position + vel.normalized *0.25f);
+        m_LineRenderer.SetPosition(1, this.transform.position + vel.normalized *0.35f);
     }
 
     void FixedUpdate()
