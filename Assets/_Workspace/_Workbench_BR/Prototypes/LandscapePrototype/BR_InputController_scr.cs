@@ -17,15 +17,17 @@ namespace LunarLander.Prototypes.BR.LandscapePrototype
                 -UnityEngine.Input.acceleration.z,
                 0.30f,
                 0.95f);
-            var sign = Mathf.Sign(INPUT.y);
-            INPUT.y = Mathf.Abs(INPUT.y) - 0.30f; 
-            INPUT.y /= (0.95f - 0.30f) * sign;
-            //Debug.Log(INPUT.y);
+            //var sign = Mathf.Sign(INPUT.y);
+            //INPUT.y = Mathf.Abs(INPUT.y) - 0.30f; 
+            //INPUT.y /= (0.95f - 0.30f) * sign;
+            INPUT.y = Mathf.Abs(INPUT.y) - 0.30f;
+            INPUT.y /= 0.7f;
+            Debug.Log(INPUT.y);
 
             INPUT.x = Mathf.Clamp(
                 UnityEngine.Input.acceleration.x,
-                -0.45f,
-                0.45f);
+                -1.25f,
+                1.25f);
             INPUT.x /= 0.45f;
             //Debug.Log(INPUT.x);
         }

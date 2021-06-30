@@ -6,22 +6,16 @@ using UnityEngine;
 
 public class Controller_Player2D : MonoBehaviour
 {
-    private Rigidbody2D m_Rb;
-
     [SerializeField] private Vector2 m_Input = Vector2.zero;
-
     [SerializeField] private float m_ForceFactor;
-
-    [SerializeField] private Vector3 m_Force;
-
     [SerializeField] private float m_Torque;
-
-    [SerializeField] private float m_Rotation;
-
     [SerializeField] private LayerMask m_GroundLayerMask;
+    [SerializeField] private float m_Fuel = 1000f;
+    [SerializeField] private float m_FuelConsumptionFactor = 1f;
 
-    
-
+    private Rigidbody2D m_Rb;
+    private Vector3 m_Force;
+    private float m_Rotation;
     private Vector3 m_torqueVector;
     private LineRenderer m_LineRenderer;
 
@@ -38,24 +32,27 @@ public class Controller_Player2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_Input.x = Input.GetAxis("Horizontal");
-        m_Input.y = Input.GetAxis("Vertical");
-        m_torqueVector.z = Mathf.LerpAngle(this.m_torqueVector.z, -BR_InputController_scr.INPUT.x * m_Torque, Time.deltaTime);
+        m_Input.x = Input.GetAxis("Horizontal") - BR_InputController_scr.INPUT.x;
+        m_Input.y = Input.GetAxis("Vertical") + BR_InputController_scr.INPUT.y;
+        m_torqueVector.z = Mathf.LerpAngle(this.m_torqueVector.z, m_Input.x * m_Torque, Time.deltaTime);
 
         var vel = new Vector3(
                 m_Rb.velocity.x,
                 m_Rb.velocity.y,
                 0);
 
-        m_LineRenderer.SetPosition(0, this.transform.position + vel.normalized *0.25f);
-        m_LineRenderer.SetPosition(1, this.transform.position + vel.normalized *0.35f);
+        m_LineRenderer.SetPosition(0, this.transform.position + vel.normalized * 0.25f );
+        m_LineRenderer.SetPosition(1, this.transform.position + vel.normalized * Mathf.Clamp(vel.magnitude * 0.5f, 0.35f, 1.0f) );
+
+        m_Fuel -= m_Input.y * m_FuelConsumptionFactor * Time.deltaTime;
+        //Debug.Log(m_Input.y);
     }
 
     void FixedUpdate()
     {
         transform.rotation = Quaternion.Euler(m_torqueVector);
 
-        m_Force = transform.up * Time.deltaTime * Mathf.Pow(BR_InputController_scr.INPUT.y,5) * m_ForceFactor;
+        m_Force = transform.up * Time.deltaTime * Mathf.Pow(m_Input.y,5) * m_ForceFactor;
 
         m_Rb.AddForce(m_Force, ForceMode2D.Force);
 
@@ -66,19 +63,22 @@ public class Controller_Player2D : MonoBehaviour
     {
         while (true)
         {
-            Helper_MeasureDistanceToGround();
-            Helper_ReportVelocity();
+            Helper_ReportDistanceToGround();
+            Helper_ReportSensorData();
+            
             yield return new WaitForSeconds(0.3f);
         }
     }
 
-    private void Helper_ReportVelocity()
+    private void Helper_ReportSensorData()
     {
         EventManager.Invoke("OnReportVelocityVertical", this, m_Rb.velocity.y);
         EventManager.Invoke("OnReportVelocityHorizontal", this, -m_Rb.velocity.x);
+        EventManager.Invoke("OnReportRemainingFuel", this, Mathf.Round(m_Fuel));
+        EventManager.Invoke("OnReportThrottle", this, m_Input.y);
     }
 
-    private void Helper_MeasureDistanceToGround()
+    private void Helper_ReportDistanceToGround()
     {
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position, 
@@ -91,6 +91,5 @@ public class Controller_Player2D : MonoBehaviour
             float distance = Mathf.Abs(hit.point.y - transform.position.y);
             EventManager.Invoke("OnDistanceToGroundMeasured", this, (distance-0.089f) *100f);
         }
-        
     }
 }
