@@ -50,7 +50,7 @@ namespace Nvp.Events
                 temp += listener;
                 _eventHandlers.Add(hash, temp);
             }
-        }        
+        }
 
 
 
@@ -62,7 +62,7 @@ namespace Nvp.Events
             if (_eventHandlers.TryGetValue((int)ge, out temp))
             {
                 temp -= listener;
-                _eventHandlers[(int) ge] = temp;
+                _eventHandlers[(int)ge] = temp;
             }
         }
 

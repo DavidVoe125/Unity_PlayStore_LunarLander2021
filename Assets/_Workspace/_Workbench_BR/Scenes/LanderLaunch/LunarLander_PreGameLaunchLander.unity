@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LoadLevelAfterSecondsElapsed: 15
-  m_NextSceneName: TestScene_Landscape
+  m_NextSceneName: LunarLander_2DGame
 --- !u!4 &31310282
 Transform:
   m_ObjectHideFlags: 0

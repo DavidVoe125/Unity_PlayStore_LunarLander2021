@@ -14,7 +14,7 @@ public class Controller_Player2D : MonoBehaviour
     [SerializeField] private float m_FuelConsumptionFactor = 1f;
 
     private Rigidbody2D m_Rb;
-    private Vector3 m_Force;
+    public Vector3 m_Force;
     private float m_Rotation;
     private Vector3 m_torqueVector;
     private LineRenderer m_LineRenderer;
@@ -66,7 +66,7 @@ public class Controller_Player2D : MonoBehaviour
             Helper_ReportDistanceToGround();
             Helper_ReportSensorData();
             
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -76,6 +76,7 @@ public class Controller_Player2D : MonoBehaviour
         EventManager.Invoke("OnReportVelocityHorizontal", this, -m_Rb.velocity.x);
         EventManager.Invoke("OnReportRemainingFuel", this, Mathf.Round(m_Fuel));
         EventManager.Invoke("OnReportThrottle", this, m_Input.y);
+        EventManager.Invoke("OnReportPosition", this, this.transform.position.x);
     }
 
     private void Helper_ReportDistanceToGround()

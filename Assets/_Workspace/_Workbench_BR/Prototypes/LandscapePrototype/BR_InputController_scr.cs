@@ -13,16 +13,17 @@ namespace LunarLander.Prototypes.BR.LandscapePrototype
         // +++ unity event functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         void Update()
         {
+            //INPUT.y = Mathf.Clamp(
+            //    -UnityEngine.Input.acceleration.z,
+            //    0.30f,
+            //    0.95f);
             INPUT.y = Mathf.Clamp(
                 -UnityEngine.Input.acceleration.z,
-                0.30f,
-                0.95f);
-            //var sign = Mathf.Sign(INPUT.y);
-            //INPUT.y = Mathf.Abs(INPUT.y) - 0.30f; 
-            //INPUT.y /= (0.95f - 0.30f) * sign;
-            INPUT.y = Mathf.Abs(INPUT.y) - 0.30f;
-            INPUT.y /= 0.7f;
-            Debug.Log(INPUT.y);
+                0f,
+                1f);
+            INPUT.y = Mathf.Abs(INPUT.y) - 0.50f;
+            INPUT.y *= 2f;
+            //Debug.Log(INPUT.y);
 
             INPUT.x = Mathf.Clamp(
                 UnityEngine.Input.acceleration.x,

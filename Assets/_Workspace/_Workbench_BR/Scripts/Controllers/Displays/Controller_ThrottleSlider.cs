@@ -23,12 +23,12 @@ public class Controller_ThrottleSlider : MonoBehaviour
 
     private void OnReportThrottle(object sender, object eventargs)
     {
-        Debug.Log("OnReportThrottle");
+        //Debug.Log("OnReportThrottle");
         var value = eventargs.GetValueAs<float>();
         if (value > m_MaxSliderValue) m_MaxSliderValue = value;
 
         value = Mathf.Clamp(value / m_MaxSliderValue, 0f, 1f);
-        m_ThrottleSlider.value = value;
+        m_ThrottleSlider.value = Mathf.Lerp(m_ThrottleSlider.value, value, Time.deltaTime*10) ;
 
     }
 }
